@@ -134,13 +134,16 @@ snippet `(\\?[a-zA-Z]\w*({?\w*})?)(rta)` "Vector postfix" iAm
 \overrightarrow{``rv = m[1]``}
 endsnippet
 
+snippet `(\\?[a-zA-Z]\w*({?\w*})?)(hdot)` "dot" iAm
 \dot{``rv = m[1]``}
 endsnippet
 
+snippet `(\\?[a-zA-Z]\w*({?\w*})?)(hddot)` "ddot" iAm
 \ddot{``rv = m[1]``}
 endsnippet
 
 snippet `(\\?[a-zA-Z]\w*({?\w*})?)(dag)` "dagger" iAm
+\hat{``rv = m[1]``}^{\dagger}
 endsnippet
 
 # ===== Static Hat Operation ====
@@ -173,7 +176,6 @@ snippet pri "prime" iAm
 endsnippet
 
 snippet dag "dagger" iAm
-$1^{\dagger}$0
 \hat{$1}^{\dagger}$0
 endsnippet
 
@@ -1075,7 +1077,6 @@ snippet Stra "Stranonvich" wA
 Hilbert
 endsnippet
 
-# == Physics ==
 
 snippet kBt "kB T" iAm
 endsnippet
