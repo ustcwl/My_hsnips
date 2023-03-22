@@ -200,10 +200,6 @@ endsnippet
 
 # == Subscript Operation ==
 
-snippet td "subscript" iAm
-_{${1}}$0
-endsnippet
-
 snippet sb "subscript" iAm
 _{${1:2}}$0
 endsnippet

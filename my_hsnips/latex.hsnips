@@ -114,7 +114,7 @@ snippet `(\\?[a-zA-Z]\w*({?\w*})?)(BAR)` "Bar" iAm
 \overline{``rv = m[1] + m[2] + m[3]``}
 endsnippet
 
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(htd|TD)` "tilde" iAm
+snippet `(\\?[a-zA-Z]\w*({?\w*})?)(td|TD)` "tilde" iAm
 \tilde{``rv = m[1]``}
 endsnippet
 
@@ -134,16 +134,16 @@ snippet `(\\?[a-zA-Z]\w*({?\w*})?)(rta)` "Vector postfix" iAm
 \overrightarrow{``rv = m[1]``}
 endsnippet
 
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(hdot)` "dot" iAm
+snippet `(\\?[a-zA-Z]\w*({?\w*})?)(dot)` "dot" iAm
 \dot{``rv = m[1]``}
 endsnippet
 
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(hddot)` "ddot" iAm
+snippet `(\\?[a-zA-Z]\w*({?\w*})?)(2dot)` "ddot" iAm
 \ddot{``rv = m[1]``}
 endsnippet
 
 snippet `(\\?[a-zA-Z]\w*({?\w*})?)(dag)` "dagger" iAm
-\hat{``rv = m[1]``}^{\dagger}
+``rv = m[1]``^{\dagger}
 endsnippet
 
 # ===== Static Hat Operation ====
@@ -176,7 +176,7 @@ snippet pri "prime" iAm
 endsnippet
 
 snippet dag "dagger" iAm
-\hat{$1}^{\dagger}$0
+$1^{\dagger}$0
 endsnippet
 
 snippet invs "inverse" iAm
@@ -196,12 +196,13 @@ snippet R+ "R0+" iAm
 R_0^+
 endsnippet
 
-snippet pow "power" iAm
+snippet po "power" iAm
 ^{${1}}$0
 endsnippet
 
-snippet tp "to the ... power" iAm
-^{${1:2}}$0
+priority 100
+snippet epo "e power" iAm
+\mathrm{e}^{${1}}$0
 endsnippet
 
 snippet sr "square" iAm
@@ -209,10 +210,6 @@ snippet sr "square" iAm
 endsnippet
 
 # == Subscript Operation ==
-
-snippet td "subscript" iAm
-_{${1}}$0
-endsnippet
 
 snippet sb "subscript" iAm
 _{${1:0}}$0
@@ -282,15 +279,15 @@ snippet mcal "mathcal" im
 \mathcal{$1}$0
 endsnippet
 
-snippet bm "bm" iAm #\usepackage{amssymb}
-\bm{$1}$0
+snippet mbm "mathbb" iAm #\usepackage{amssymb}
+\mathbb{$1}$0
 endsnippet
 
 snippet mbf "mathbf" iAm
 \mathbf{$1}$0
 endsnippet
 
-snippet mrm "mathrm" iAm
+snippet rm "mathrm" iAm
 \mathrm{$1}$0
 endsnippet
 
@@ -334,8 +331,8 @@ snippet `(\\?[a-zA-Z]\w*({?\w*})?)(mbf|BF)` "mathbf" iAm
 endsnippet
 
 priority 100
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(bm|BM)` "bm" iAm
-\bm{``rv = m[1]``}
+snippet `(\\?[a-zA-Z]\w*({?\w*})?)(mbm|BM)` "mathbb" iAm
+\mathbb{``rv = m[1]``}
 endsnippet
 
 priority 100
@@ -359,7 +356,7 @@ snippet `(\\?[a-zA-Z]\w*({?\w*})?)cal` "mathcal" iAm
 endsnippet
 
 priority 100
-snippet `(?<!\\)\b([a-zA-Z]+)mrm` "mathrm" iAm
+snippet `(?<!\\)\b([a-zA-Z]+)rm` "mathrm" iAm
 \mathrm{``rv = m[1]``}
 endsnippet
 
@@ -443,6 +440,11 @@ endsnippet
 
 snippet `(?<!\\)(mu|alpha|sigma|rho|beta|gamma|delta|pi|zeta|eta|varepsilon|theta|iota|kappa|vartheta|lambda|nu|pi|rho|tau|upsilon|varphi|phi|chi|psi|omega|Gamma|Delta|Theta|Lambda|Xi|xi|Pi|Sigma|Upsilon|Phi|Psi|Omega|wp)` "greek" iAm
 \\``rv = m[1]``
+endsnippet
+
+priority 200
+snippet upi "\uppi" iAm 
+\uppi
 endsnippet
 
 # ==== Space Symbol ====
@@ -530,6 +532,16 @@ snippet thr "therefore" iAm
 \therefore 
 endsnippet
 
+# ==== Physics Symbol ====
+
+snippet imp "imp" iAm
+\mathrm{imp}
+endsnippet
+
+snippet zpf "zpf" iAm
+\mathrm{zpf}
+endsnippet
+
 
 # ==== Possibility Symbol ====
 
@@ -539,6 +551,10 @@ endsnippet
 
 snippet Tr "Tr" iAm
 \operatorname{Tr}
+endsnippet
+
+snippet Re "Re" iAm
+\operatorname{Re}
 endsnippet
 
 snippet Var "Var" iAm
@@ -551,6 +567,14 @@ endsnippet
 
 snippet Exp "Expected" iAm
 \mathbb{E}
+endsnippet
+
+snippet Re "Re" iAm
+\operatorname{Re}
+endsnippet
+
+snippet Im "Im" iAm
+\operatorname{Im}
 endsnippet
 
 
@@ -585,7 +609,7 @@ snippet sim " sim" iAm
 endsnippet
 
 snippet ~~ " Amppro equals" iAm
-\thickapprox 
+\approx 
 endsnippet
 
 snippet ~= " Amppro equals2" iAm
@@ -636,6 +660,12 @@ snippet eqs "equation*" wA
 \begin{equation*}
   ${1}
 \end{equation*}
+endsnippet
+
+snippet frame "frame" wA
+\begin{frame}
+  \frametitle{${1:title}}$0
+\end{frame}
 endsnippet
 
 # ==== Common Environment ====
@@ -711,74 +741,91 @@ snippet @4 "leftangle rightangle" iAm
 \left<${1} \right>$0
 endsnippet
 
-priority 100
-snippet bk "leftangle rightangle" iAm
-\left<${1:\psi} |${1:\psi} \right>$0
-endsnippet
-
-priority 101
-snippet tbk "leftangle rightangle" iAm
-\left<${1:\psi(t)} |${1:\psi(t)} \right>$0
-endsnippet
-
-priority 101
-snippet 3bk "leftangle | | rightangle" iAm
-\left<${1:\psi} | ${2} |${1:\psi} \right>$0
-endsnippet
-
-priority 101
-snippet 2bk "leftangle rightangle" iAm
-\left<${1} |${2} \right>$0
-endsnippet
-
-priority 100
-snippet kb "ket bra" iAm
-\left|${1:\psi} \right>${2}\left<${1:\psi} \right|$0
-endsnippet
-
-priority 101
-snippet tkb "ket bra" iAm
-\left|${1:\psi(t)} \right>${2}\left<${1:\psi(t)} \right|$0
-endsnippet
-
-priority 101
-snippet 2kb "ket bra" iAm
-\left|${1} \right>${2}\left<${3} \right|$0
-endsnippet
-
-priority 101
-snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(bk)` "bra ket" iAm
-\left<``rv = m[1]``|``rv = m[1]``\right>$0
-endsnippet
-
-priority 101
-snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(kb)` "ket bra" iAm
-\left|``rv = m[1]`` \right>${1}\left<``rv = m[1]`` \right|$0
-endsnippet
+# == Dirac ==
 
 priority 100
 snippet bra "bra" iAm
-\bra{${1:\psi}}$0
+\langle ${1:\psi}|$0
 endsnippet
 
 priority 100
 snippet ket "ket" iAm
-\ket{${1:\psi}}$0
+|${1:\psi} \rangle$0
+endsnippet
+
+priority 101
+snippet tket "ket" iAm
+|${1:\psi}(t) \rangle $0
+endsnippet
+
+priority 101
+snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(ket)` "ket" iAm
+|``rv = m[1]`` \rangle 
+endsnippet
+
+priority 100
+snippet kb "ket bra" iAm
+|${1:n} \rangle ${2} \langle ${1:n}|$0
+endsnippet
+
+priority 101
+snippet tkb "ket bra" iAm
+|${1:\psi}(t) \rangle ${2} \langle ${1:\psi}(t)|$0
+endsnippet
+
+priority 101
+snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(kb)` "ket bra" iAm
+|``rv = m[1]`` \rangle ${2} \langle``rv = m[1]`` |$0
+endsnippet
+
+priority 101
+snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(klb)` "ket bra" iAm
+|``rv = m[1]`` \rangle ${2} \langle``rv = m[1]`` |$0
 endsnippet
 
 priority 100
 snippet mean "mean" iAm
-\braket{${1}}$0
+\langle $1 \rangle $0
+endsnippet
+
+priority 100
+snippet Mean "mean" iAm
+\left\langle $1 \right\rangle $0
+endsnippet
+
+priority 100
+snippet com "community relation" iAm
+[\hat{${1:A}}, \hat{${2:B}}]$0
+endsnippet
+
+priority 100
+snippet acom "anticommunity relation" iAm
+\{\hat{${1:A}}, \hat{${2:B}}\}$0
 endsnippet
 
 priority 101
-snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(mean)` "ket bra" iAm
-\braket{``rv = m[1]``}
+snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(mean)` "mean" iAm
+\langle ``rv = m[1]`` \rangle
+endsnippet
+
+priority 101
+snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(mean)` "Mean" iAm
+\left\langle ``rv = m[1]`` \right\rangle
+endsnippet
+
+priority 101
+snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(blk)` "bra ket" iAm
+\langle ``rv = m[1]``|``rv = m[1]`` \rangle
+endsnippet
+
+priority 102
+snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(bllk)` "mean" iAm
+\langle ``rv = m[1]``|$1|``rv = m[1]`` \rangle $0
 endsnippet
 
 priority 102
 snippet qmean "Quantum mean" iAm
-\left< \hat{${1:a}}^{\dagger} \hat{${1:a}} \right>$0
+\langle \hat{${1:a}}^{\dagger} \hat{${1:a}} \right$0
 endsnippet
 
 priority 200
@@ -818,7 +865,17 @@ endsnippet
 
 priority 200
 snippet abs "absolute value" iAm
-\left\vert ${1} \right\vert $0
+|$1|$0
+endsnippet
+
+priority 200
+snippet Abs "absolute value" iAm
+\left| ${1} \right|$0
+endsnippet
+
+priority 101
+snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(abs)` "absolute value" iAm
+|``rv = m[1]``|
 endsnippet
 
 snippet beg "begin{} / end{}" bA
@@ -881,7 +938,17 @@ endsnippet
 
 priority 100
 snippet dint "integral" iAm
-\int_{${1:-\infty}}^{${2:\infty}} ${3} \\mathrm{d}${4:x}$0
+\int_{${1:-\infty}}^{${2:\infty}} \mathrm{d}${4:x}$0
+endsnippet
+
+priority 100
+snippet ft "Fourier transform" iAm
+\int_{${1:-\infty}}^{${2:\infty}} \mathrm{d}${3:t} \mathrm{e}^{i \omega t} $0
+endsnippet
+
+priority 200
+snippet ift "inverse Fourier transform" iAm
+\int_{${1:-\infty}}^{${2:\infty}} \frac{\mathrm{d}${3:\omega}}{2 \pi} \mathrm{e}^{-i \omega t} $0
 endsnippet
 
 priority 200
@@ -908,7 +975,7 @@ endsnippet
 
 # Custom: Can add more defined operator
 priority 100
-snippet `(?<![\a-zA-Z])(rank|lcm|gcd|atan2|softmax|tr|trace|diag|sign|const)` "math function" iAm
+snippet `(?<![\a-zA-Z])(rank|lcm|gcd|atan2|softmax|tr|Re|trace|diag|sign|const)` "math function" iAm
 \\operatorname{``rv = m[1]``}
 endsnippet
 
@@ -1069,16 +1136,73 @@ rv = createTable(m[1], m[2]);
 ``
 endsnippet
 
-# ==== Name ===
+== Name ==
 
 snippet Stra "Stranonvich" wA
+Stranonvich
+endsnippet
 
+snippet Hei "Heisenberg" wA
+Heisenberg
+endsnippet
 
+snippet Sch "Schrodinger" wA
+Schrödinger
+endsnippet
+
+snippet Ito "Itô" wA
+Itô
+endsnippet
+
+snippet WK "Wiener-Khinchin" wA
+Wiener-Khinchin
+endsnippet
+
+snippet Hil "Hilbert" wA
 Hilbert
 endsnippet
 
+# == Physics ==
 
 snippet kBt "kB T" iAm
+k_{\mathrm{B}}T$0
 endsnippet
 
+== Physics Equations ==
+
+snippet meqs "Maxwell equations" iAm
+\begin{align}
+\nabla \cdot \bm{B} &= 0, \\\\
+\nabla \times \bm{E} &= - \frac{\partial \bm{B}}{\partial t}, \\\\
+\nabla \cdot \bm{D} &= 0, \\\\
+\nabla \times \bm{H} &= \frac{\partial \bm{D}}{\partial t}.
+\end{align}
+endsnippet
+
+snippet vpA "vector potential in Coulomb gauge" iAm
+\begin{align}
+\bm{B} &= \nabla \times \bm{A}, \\\\
+\bm{E} &= - \frac{\partial \bm{A}}{\partial t}
+\end{align}
+endsnippet
+
+snippet eot "time evolution" iAm
+\mathrm{e}^{${1:-i} \omega t}$0
+endsnippet
+
+snippet eokt "time evolution" iAm
+\mathrm{e}^{${1:-i} \omega_{${2:k}} t}$0
+endsnippet
+
+snippet wf "wave function" iAm
+\left( \nabla^{2} + ${1:k^{2\}} \right) ${2:\psi}(\bm{r}) = 0 $0
+endsnippet
+
+snippet orth "complex orthonormal set" iAm
+\int_{${1:V}} \bm{u}_{k}^{*}(\bm{r}) \bm{u}_{k^{\prime}}(\bm{r}) \mathrm{d}\bm{r} = \delta_{k k^{\prime}}
+endsnippet
+
+snippet `(\\?[a-zA-Z]\w*({?\w*})?)co([a-zA-Z])` "bar" iAm
+\int_{${1:V}} ``rv = m[1]``_{``rv = m[3]``}^{*}(\bm{r}) ``rv = m[1]``_{``rv = m[3]``^{\prime}}(\bm{r}) \mathrm{d}\bm{r} = \delta_{``rv = m[3]`` ``rv = m[3]``^{\prime}}$0
+endsnippet
 
