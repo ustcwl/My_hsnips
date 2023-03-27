@@ -348,7 +348,7 @@ endsnippet
 
 priority 100
 snippet `(?<!\\)\b([a-zA-Z]+)opn` "operatorname" iAm
-\operatorname{``rv = m[1]``}
+\mathrm{``rv = m[1]``}
 endsnippet
 
 # == Auto Symbol ==
@@ -420,7 +420,7 @@ snippet `(?<!\\)(sum|min|max|argmin|argmax|sup|inf)` "sum|min|max|argmin|argmax|
 \\``rv = m[1]``_{$1}
 endsnippet
 
-snippet `(?<!\\)(sin|cos|arccot|cot|csc|ln|exp|det|perp|arcsin|arccos|arctan|arccot|arccsc|arcsec|ell|nabla|notin|not)` "function" iAm
+snippet `(?<!\\)(sin|cos|tan|arccot|cot|csc|ln|exp|det|perp|arcsin|arccos|arctan|arccot|arccsc|arcsec|ell|nabla|notin|not)` "function" iAm
 \\``rv = m[1]`` 
 endsnippet
 
@@ -522,32 +522,30 @@ snippet thr "therefore" iAm
 \therefore 
 endsnippet
 
-
-
 # ==== Possibility Symbol ====
 
 snippet Pr "Pr" iAm
-\operatorname{Pr}
+\mathrm{Pr}
 endsnippet
 
 snippet Tr "Tr" iAm
-\operatorname{Tr}
+\mathrm{Tr}
 endsnippet
 
 snippet Var "Var" iAm
-\operatorname{Var}
+\mathrm{Var}
 endsnippet
 
 snippet Cov "Cov" iAm
-\operatorname{Cov}
+\mathrm{Cov}
 endsnippet
 
 snippet Re "Re" iAm
-\operatorname{Re}
+\mathrm{Re}
 endsnippet
 
 snippet Im "Im" iAm
-\operatorname{Im}
+\mathrm{Im}
 endsnippet
 
 snippet Exp "Expected" iAm
@@ -651,7 +649,7 @@ snippet case "cases" iAm
 \end{cases}
 endsnippet
 
-snippet ali "aligned" iAm
+snippet alig "align" iAm
 \begin{align}
 $1 \\\\
 \end{align}
@@ -724,16 +722,6 @@ endsnippet
 priority 101
 snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(ket)` "ket" iAm
 |``rv = m[1]`` \rangle 
-endsnippet
-
-priority 100
-snippet kb "ket bra" iAm
-|${1:n} \rangle ${2} \langle ${1:n}|$0
-endsnippet
-
-priority 101
-snippet tkb "ket bra" iAm
-|${1:\psi}(t) \rangle ${2} \langle ${1:\psi}(t)|$0
 endsnippet
 
 priority 101
@@ -902,11 +890,6 @@ snippet bnn "bigcap" iAm
 endsnippet
 
 priority 100
-snippet dint "integral" iAm
-\int_{${1:-\infty}}^{${2:\infty}} \mathrm{d}$0
-endsnippet
-
-priority 100
 snippet ft "Fourier transform" iAm
 \int_{${1:-\infty}}^{${2:\infty}} \mathrm{d}${3:t} \mathrm{e}^{i \omega ${4:t}}$0
 endsnippet
@@ -942,18 +925,18 @@ endsnippet
 
 priority 200
 snippet Grho "mathcal G" iAm
-\mathcal{G}[${1:\hat{r}}] \rho = \frac{${1:\hat{r}} \rho ${1:\hat{r}}^{\dagger}}{\operatorname{Tr}[${1:\hat{r}} \rho ${1:\hat{r}}^{\dagger}]} - \rho $0
+\mathcal{G}[${1:\hat{r}}] \rho = \frac{${1:\hat{r}} \rho ${1:\hat{r}}^{\dagger}}{\mathrm{Tr}[${1:\hat{r}} \rho ${1:\hat{r}}^{\dagger}]} - \rho $0
 endsnippet
 
 priority 200
 snippet Hrho "mathcal H" iAm
-\mathcal{H}[${1:\hat{r}}] \rho &= ${1:\hat{r}} \rho + \rho ${1:\hat{r}}^{\dagger} - \operatorname{Tr}[${1:\hat{r}} \rho + \rho ${1:\hat{r}}^{\dagger}] \rho.
+\mathcal{H}[${1:\hat{r}}] \rho &= ${1:\hat{r}} \rho + \rho ${1:\hat{r}}^{\dagger} - \mathrm{Tr}[${1:\hat{r}} \rho + \rho ${1:\hat{r}}^{\dagger}] \rho.
 endsnippet
 
 # Custom: Can add more defined operator
 priority 100
 snippet `(?<![\a-zA-Z])(rank|lcm|gcd|atan2|softmax|tr|trace|diag|sign|const)` "math function" iAm
-\\operatorname{``rv = m[1]``}
+\\mathrm{``rv = m[1]``}
 endsnippet
 
 # ====== Big Snippet ======
@@ -1096,6 +1079,13 @@ snippet `vecr([1-9])` "row vector" iiAm
 ``\\end{pmatrix}$0
 endsnippet
 
+priority 300
+snippet `ali([1-9])` "align" iiAm
+\\begin{align}``
+    rv = gen_matrix(m[1], 1);
+``\\end{align}$0
+endsnippet
+
 
 # == General ==
 
@@ -1181,4 +1171,15 @@ endsnippet
 
 snippet `(\\?[a-zA-Z]\w*({?\w*})?)co([a-zA-Z])` "bar" iAm
 \int_{${1:V}} ``rv = m[1]``_{``rv = m[3]``}^{*}(\bm{r}) ``rv = m[1]``_{``rv = m[3]``^{\prime}}(\bm{r}) \mathrm{d}\bm{r} = \delta_{``rv = m[3]`` ``rv = m[3]``^{\prime}}$0
+endsnippet
+
+== Physical operator ==
+
+priority 100
+snippet `([a-zA-Z])ono` "occupation number operator" iAm
+\hat{``rv = m[1]``}^{\dagger}\hat{``rv = m[1]``}$0
+endsnippet
+
+snippet `([a-zA-Z])\w*{?(\w*)}?ono` "occupation number operator" iAm
+\hat{``rv = m[1]``}^{\dagger}_{``rv = m[2]``}\hat{``rv = m[1]``}_{``rv = m[2]``}$0
 endsnippet
