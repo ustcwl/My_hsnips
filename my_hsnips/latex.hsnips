@@ -279,8 +279,8 @@ snippet mcal "mathcal" im
 \mathcal{$1}$0
 endsnippet
 
-snippet mbm "mathbb" iAm #\usepackage{amssymb}
-\mathbb{$1}$0
+snippet bm "bm" iAm 
+\bm{$1}$0
 endsnippet
 
 snippet mbf "mathbf" iAm
@@ -331,7 +331,7 @@ snippet `(\\?[a-zA-Z]\w*({?\w*})?)(mbf|BF)` "mathbf" iAm
 endsnippet
 
 priority 100
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(mbm|BM)` "mathbb" iAm
+snippet `(\\?[a-zA-Z]\w*({?\w*})?)(bm|BM)` "mathbb" iAm
 \mathbb{``rv = m[1]``}
 endsnippet
 
