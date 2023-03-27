@@ -350,7 +350,6 @@ snippet `(?<!\\)\b([a-zA-Z]+)rm` "mathrm" iAm
 \mathrm{``rv = m[1]``}
 endsnippet
 
-priority 100
 # == Auto Symbol ==
 
 snippet oo "\infty" iAmm
