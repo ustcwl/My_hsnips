@@ -76,7 +76,7 @@ snippet // "Fraction" iAm
 \\frac{${1:${VISUAL}}}{$2}$0
 endsnippet
 
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)/` "Fraction no ()" iAm
+snippet `(\d+|\\?[a-zA-Z]\w*({?\w*})?)/` "Fraction no ()" iAm
 \frac{``rv = m[1]``}{$1}$0
 endsnippet
 
@@ -111,35 +111,40 @@ endsnippet
 
 # ==== Auto Capture Hat Operation ====
 
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(td|TD)` "tilde" iAm
+snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(td|TD)` "tilde" iAm
 \tilde{``rv = m[1]``}
 endsnippet
 
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)bar` "bar" iAm
+snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)bar` "bar" iAm
 \bar{``rv = m[1]``}
 endsnippet
 
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(hat|HAT)` "hat" iAm
+priority 200
+snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)lbar` "overline" iAm
+\overline{``rv = m[1]``}
+endsnippet
+
+snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(hat|HAT)` "hat" iAm
 \hat{``rv = m[1]``}
 endsnippet
 
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(hvec)` "Vector postfix" iAm
+snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(hvec)` "Vector postfix" iAm
 \vec{``rv = m[1]``}
 endsnippet
 
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(rta)` "Vector postfix" iAm
+snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(rta)` "Vector postfix" iAm
 \overrightarrow{``rv = m[1]``}
 endsnippet
 
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(dot)` "dot" iAm
+snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(dot)` "dot" iAm
 \dot{``rv = m[1]``}
 endsnippet
 
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(2dot)` "ddot" iAm
+snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(2dot)` "ddot" iAm
 \ddot{``rv = m[1]``}
 endsnippet
 
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(dag)` "dagger" iAm
+snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(dag)` "dagger" iAm
 ``rv = m[1]``^{\dagger}
 endsnippet
 
@@ -316,32 +321,32 @@ endsnippet
 # ==== Dynamic Operation ====
 
 priority 100
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(bf|BF)` "mathbf" iAm
+snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(bf|BF)` "mathbf" iAm
 \mathbf{``rv = m[1]``}
 endsnippet
 
 priority 100
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(bm|BM)` "mathbb" iAm
+snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(bm|BM)` "mathbb" iAm
 \bm{``rv = m[1]``}
 endsnippet
 
 priority 100
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(bs)` "boldsymbol" iAm
+snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(bs)` "boldsymbol" iAm
 \boldsymbol{``rv = m[1]``}
 endsnippet
 
 priority 100
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(sf)` "mathsf" iAm
+snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(sf)` "mathsf" iAm
 \mathsf{``rv = m[1]``}
 endsnippet
 
 priority 100
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(frak)` "mathfrak" iAm
+snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(frak)` "mathfrak" iAm
 \mathfrak{``rv = m[1]``}
 endsnippet
 
 priority 100
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)cal` "mathcal" iAm
+snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)cal` "mathcal" iAm
 \mathcal{``rv = m[1].toUpperCase()``}$0
 endsnippet
 
@@ -718,23 +723,25 @@ snippet tket "ket" iAm
 |${1:\psi}(t) \rangle $0
 endsnippet
 
+
+
 priority 101
-snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?)(ket)` "ket" iAm
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(ket)` "ket" iAm
 |``rv = m[1]`` \rangle 
 endsnippet
 
 priority 101
-snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?)(bra)` "bra" iAm
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(bra)` "bra" iAm
 \langle ``rv = m[1]``|  
 endsnippet
 
 priority 101
-snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?)(kb)` "ket bra" iAm
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(kb)` "ket bra" iAm
 |``rv = m[1]`` \rangle ${2}\langle ``rv = m[1]``|$0
 endsnippet
 
 priority 101
-snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?)(klb)` "ket bra" iAm
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(klb)` "ket bra" iAm
 |``rv = m[1]`` \rangle ${2}\langle ``rv = m[1]``|$0
 endsnippet
 
@@ -759,22 +766,22 @@ snippet acom "anticommunity relation" iAm
 endsnippet
 
 priority 101
-snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?)(mean)` "mean" iAm
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(mean)` "mean" iAm
 \langle ``rv = m[1]`` \rangle
 endsnippet
 
 priority 101
-snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?)(mean)` "Mean" iAm
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(mean)` "Mean" iAm
 \left\langle ``rv = m[1]`` \right\rangle
 endsnippet
 
 priority 101
-snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?)(blk)` "bra ket" iAm
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(blk)` "bra ket" iAm
 \langle ``rv = m[1]``|``rv = m[1]`` \rangle
 endsnippet
 
 priority 102
-snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?)(bllk)` "mean" iAm
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(bllk)` "mean" iAm
 \langle ``rv = m[1]``|$1|``rv = m[1]`` \rangle $0
 endsnippet
 
@@ -816,7 +823,7 @@ snippet rij "mrij" iAm
 (${1:x}_${2:n})_{${3:$2} \\in ${4:N}}$0
 endsnippet
 
-priority 200
+priority 100
 snippet abs "absolute value" iAm
 |$1|$0
 endsnippet
@@ -827,7 +834,7 @@ snippet Abs "absolute value" iAm
 endsnippet
 
 priority 101
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(abs)` "absolute value" iAm
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(abs)` "absolute value" iAm
 |``rv = m[1]``|
 endsnippet
 
