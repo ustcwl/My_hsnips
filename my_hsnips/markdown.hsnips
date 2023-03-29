@@ -76,7 +76,7 @@ snippet // "Fraction" iAm
 \\frac{${1:${VISUAL}}}{$2}$0
 endsnippet
 
-snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)/` "Fraction no ()" iAm
+snippet `(\\?[a-zA-Z]\w*({?\w*})?)/` "Fraction no ()" iAm
 \frac{``rv = m[1]``}{$1}$0
 endsnippet
 
@@ -719,18 +719,23 @@ snippet tket "ket" iAm
 endsnippet
 
 priority 101
-snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(ket)` "ket" iAm
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?)(ket)` "ket" iAm
 |``rv = m[1]`` \rangle 
 endsnippet
 
 priority 101
-snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(kb)` "ket bra" iAm
-|``rv = m[1]`` \rangle ${2} \langle``rv = m[1]`` |$0
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?)(bra)` "bra" iAm
+\langle ``rv = m[1]``|  
 endsnippet
 
 priority 101
-snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(klb)` "ket bra" iAm
-|``rv = m[1]`` \rangle ${2} \langle``rv = m[1]`` |$0
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?)(kb)` "ket bra" iAm
+|``rv = m[1]`` \rangle ${2}\langle ``rv = m[1]``|$0
+endsnippet
+
+priority 101
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?)(klb)` "ket bra" iAm
+|``rv = m[1]`` \rangle ${2}\langle ``rv = m[1]``|$0
 endsnippet
 
 priority 100
@@ -754,22 +759,22 @@ snippet acom "anticommunity relation" iAm
 endsnippet
 
 priority 101
-snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(mean)` "mean" iAm
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?)(mean)` "mean" iAm
 \langle ``rv = m[1]`` \rangle
 endsnippet
 
 priority 101
-snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(mean)` "Mean" iAm
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?)(mean)` "Mean" iAm
 \left\langle ``rv = m[1]`` \right\rangle
 endsnippet
 
 priority 101
-snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(blk)` "bra ket" iAm
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?)(blk)` "bra ket" iAm
 \langle ``rv = m[1]``|``rv = m[1]`` \rangle
 endsnippet
 
 priority 102
-snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(bllk)` "mean" iAm
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?)(bllk)` "mean" iAm
 \langle ``rv = m[1]``|$1|``rv = m[1]`` \rangle $0
 endsnippet
 
@@ -822,7 +827,7 @@ snippet Abs "absolute value" iAm
 endsnippet
 
 priority 101
-snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(abs)` "absolute value" iAm
+snippet `(\\?[a-zA-Z]\w*({?\w*})?)(abs)` "absolute value" iAm
 |``rv = m[1]``|
 endsnippet
 
