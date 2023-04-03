@@ -119,7 +119,6 @@ snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)bar` "bar" iAm
 \bar{``rv = m[1]``}
 endsnippet
 
-snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\^[A-Za-z0-9]|\^\{[^}]+\})?(\(\w+\))?)lbar` "overline" iAm
 priority 100
 snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\^[A-Za-z0-9]|\^\{[^}]+\})?(\(\w+\))?)bar` "overline" iAm
 \overline{``rv = m[1]``}
