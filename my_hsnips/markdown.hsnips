@@ -76,7 +76,7 @@ snippet // "Fraction" iAm
 \\frac{${1:${VISUAL}}}{$2}$0
 endsnippet
 
-snippet `(\d+|\\?[a-zA-Z]\w*({?\w*})?)/` "Fraction no ()" iAm
+snippet `(\d+|\\?[a-zA-Z]\w*({?\w*})?(\^({?\w*})?)?(\(.\))?)/` "Fraction no ()" iAm
 \frac{``rv = m[1]``}{$1}$0
 endsnippet
 
@@ -119,12 +119,13 @@ snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)bar` "bar" iAm
 \bar{``rv = m[1]``}
 endsnippet
 
-priority 200
 snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\^[A-Za-z0-9]|\^\{[^}]+\})?(\(\w+\))?)lbar` "overline" iAm
+priority 100
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\^[A-Za-z0-9]|\^\{[^}]+\})?(\(\w+\))?)bar` "overline" iAm
 \overline{``rv = m[1]``}
 endsnippet
 
-snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(hat|HAT)` "hat" iAm
+snippet `([a-zA-Z])(hat|HAT)` "hat" iAm
 \hat{``rv = m[1]``}
 endsnippet
 
@@ -132,8 +133,13 @@ snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(hvec)` "Vector postfix" iAm
 \vec{``rv = m[1]``}
 endsnippet
 
-snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(rta)` "Vector postfix" iAm
+priority 100
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\^({?\w*})?)?(\(.\))?)(hvec)` "Vector postfix" iAm
 \overrightarrow{``rv = m[1]``}
+endsnippet
+
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\^({?\w*})?)?(\(.\))?)(lta)` "left arrow" iAm
+\overleftarrow{``rv = m[1]``}
 endsnippet
 
 snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(dot)` "dot" iAm
@@ -145,10 +151,6 @@ snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(2dot)` "ddot" iAm
 endsnippet
 
 # ===== Static Hat Operation ====
-
-snippet hat "hat" iAm
-\hat{$1}$0
-endsnippet
 
 snippet sqrt "\sqrt{}" iAm
 \sqrt{${1}}$0
@@ -710,27 +712,22 @@ snippet ket "ket" iAm
 endsnippet
 
 priority 101
-snippet tket "ket" iAm
-|${1:\psi}(t) \rangle $0
-endsnippet
-
-priority 101
-snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(ket)` "ket" iAm
+snippet `(\d+|\\?[a-zA-Z]\w*({?\w*})?(\^({?\w*})?)?(\(.\))?)(ket)` "ket" iAm
 |``rv = m[1]`` \rangle 
 endsnippet
 
 priority 101
-snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(bra)` "bra" iAm
+snippet `(\d+|\\?[a-zA-Z]\w*({?\w*})?(\^({?\w*})?)?(\(.\))?)(bra)` "bra" iAm
 \langle ``rv = m[1]``|  
 endsnippet
 
 priority 101
-snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(kb)` "ket bra" iAm
+snippet `(\d+|\\?[a-zA-Z]\w*({?\w*})?(\^({?\w*})?)?(\(.\))?)(kb)` "ket bra" iAm
 |``rv = m[1]`` \rangle ${2}\langle ``rv = m[1]``|$0
 endsnippet
 
 priority 101
-snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(klb)` "ket bra" iAm
+snippet `(\d+|\\?[a-zA-Z]\w*({?\w*})?(\^({?\w*})?)?(\(.\))?)(klb)` "ket bra" iAm
 |``rv = m[1]`` \rangle ${2}\langle ``rv = m[1]``|$0
 endsnippet
 
@@ -743,12 +740,12 @@ snippet Mean "mean" iAm
 endsnippet
 
 snippet com "commutation relation" iAm
-[\hat{${1:a}}, \hat{${2:a}}]$0
+[\hat{${1:A}}, \hat{${2:B}}]$0
 endsnippet
 
 priority 101
 snippet acom "anticommutation relation" iAm
-\{\hat{${1:a}}, \hat{${2:a}}\\\}$0
+\{\hat{${1:A}}, \hat{${2:B}}\\\}$0
 endsnippet
 
 priority 100
@@ -762,22 +759,22 @@ snippet `([a-zA-Z])([a-zA-Z])(acom)` "anticommutation relation" iAm
 endsnippet
 
 priority 101
-snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(mean)` "mean" iAm
+snippet `(\d+|\\?[a-zA-Z]\w*({?\w*})?(\^({?\w*})?)?(\(.\))?)(mean)` "mean" iAm
 \langle ``rv = m[1]`` \rangle
 endsnippet
 
 priority 101
-snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(mean)` "Mean" iAm
+snippet `(\d+|\\?[a-zA-Z]\w*({?\w*})?(\^({?\w*})?)?(\(.\))?)(mean)` "Mean" iAm
 \left\langle ``rv = m[1]`` \right\rangle
 endsnippet
 
 priority 101
-snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(blk)` "bra ket" iAm
+snippet `(\d+|\\?[a-zA-Z]\w*({?\w*})?(\^({?\w*})?)?(\(.\))?)(blk)` "bra ket" iAm
 \langle ``rv = m[1]``|``rv = m[1]`` \rangle
 endsnippet
 
 priority 102
-snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(bllk)` "mean" iAm
+snippet `(\d+|\\?[a-zA-Z]\w*({?\w*})?(\^({?\w*})?)?(\(.\))?)(bllk)` "mean" iAm
 \langle ``rv = m[1]``|$1|``rv = m[1]`` \rangle $0
 endsnippet
 
@@ -830,7 +827,7 @@ snippet Abs "absolute value" iAm
 endsnippet
 
 priority 101
-snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(abs)` "absolute value" iAm
+snippet `(\d+|\\?[a-zA-Z]\w*({?\w*})?(\^({?\w*})?)?(\(.\))?)(abs)` "absolute value" iAm
 |``rv = m[1]``|
 endsnippet
 
@@ -1180,7 +1177,7 @@ snippet orth "complex orthonormal set" iAm
 \int_{${1:V}} \bm{u}_{k}^{*}(\bm{r}) \bm{u}_{k^{\prime}}(\bm{r}) \mathrm{d}\bm{r} = \delta_{k k^{\prime}}
 endsnippet
 
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)co([a-zA-Z])` "bar" iAm
+snippet `(\\?[a-zA-Z]\w*({?\w*})?)co([a-zA-Z])` "Complete orthogonality" iAm
 \int_{${1:V}} ``rv = m[1]``_{``rv = m[3]``}^{*}(\bm{r}) ``rv = m[1]``_{``rv = m[3]``^{\prime}}(\bm{r}) \mathrm{d}\bm{r} = \delta_{``rv = m[3]`` ``rv = m[3]``^{\prime}}$0
 endsnippet
 
