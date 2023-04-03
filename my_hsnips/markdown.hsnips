@@ -120,7 +120,7 @@ snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)bar` "bar" iAm
 endsnippet
 
 priority 200
-snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)lbar` "overline" iAm
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\^[A-Za-z0-9]|\^\{[^}]+\})?(\(\w+\))?)lbar` "overline" iAm
 \overline{``rv = m[1]``}
 endsnippet
 
@@ -324,11 +324,6 @@ endsnippet
 priority 100
 snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(bm|BM)` "mathbb" iAm
 \bm{``rv = m[1]``}
-endsnippet
-
-priority 100
-snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(bs)` "boldsymbol" iAm
-\boldsymbol{``rv = m[1]``}
 endsnippet
 
 priority 100
@@ -748,12 +743,12 @@ snippet Mean "mean" iAm
 endsnippet
 
 snippet com "commutation relation" iAm
-[\hat{${1:A}}, \hat{${2:B}}]$0
+[\hat{${1:a}}, \hat{${2:a}}]$0
 endsnippet
 
 priority 101
 snippet acom "anticommutation relation" iAm
-\{\hat{${1:A}}, \hat{${2:B}}\\\}$0
+\{\hat{${1:a}}, \hat{${2:a}}\\\}$0
 endsnippet
 
 priority 100
