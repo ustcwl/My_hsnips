@@ -110,73 +110,68 @@ endsnippet
 # == Hat Operation ==
 
 # ==== Auto Capture Hat Operation ====
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(BAR)` "Bar" iAm
-\overline{``rv = m[1] + m[2] + m[3]``}
-endsnippet
 
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(td|TD)` "tilde" iAm
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(td|TD)` "tilde" iAm
 \tilde{``rv = m[1]``}
 endsnippet
 
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(bar)` "bar" iAm
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)bar` "bar" iAm
 \bar{``rv = m[1]``}
 endsnippet
 
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(hat|HAT)` "hat" iAm
+priority 100
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\^[A-Za-z0-9]|\^\{[^}]+\})?(\(\w+\))?)bar` "overline" iAm
+\overline{``rv = m[1]``}
+endsnippet
+
+snippet `([a-zA-Z])(hat|HAT)` "hat" iAm
 \hat{``rv = m[1]``}
 endsnippet
 
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(hvec)` "Vector postfix" iAm
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(hvec)` "Vector postfix" iAm
 \vec{``rv = m[1]``}
 endsnippet
 
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(rta)` "Vector postfix" iAm
+priority 100
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\^({?\w*})?)?(\(.\))?)(hvec)` "Vector postfix" iAm
 \overrightarrow{``rv = m[1]``}
 endsnippet
 
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(dot)` "dot" iAm
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\^({?\w*})?)?(\(.\))?)(lta)` "left arrow" iAm
+\overleftarrow{``rv = m[1]``}
+endsnippet
+
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(dot)` "dot" iAm
 \dot{``rv = m[1]``}
 endsnippet
 
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(2dot)` "ddot" iAm
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(2dot)` "ddot" iAm
 \ddot{``rv = m[1]``}
-endsnippet
-
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(dag)` "dagger" iAm
-``rv = m[1]``^{\dagger}
 endsnippet
 
 # ===== Static Hat Operation ====
 
-snippet BAR "BAR" iAm
-\overline{$1}$0
-endsnippet
-
-priority 100
-snippet hbar "hbar" iAm
-\hbar
-endsnippet
-
-snippet hat "hat" iAm
-\hat{$1}$0
-endsnippet
-
-snippet ht "transposition" iAm
-^{\mathrm{T}}
-endsnippet
-
-snippet sq "\sqrt{}" iAm
+snippet sqrt "\sqrt{}" iAm
 \sqrt{${1}}$0
+endsnippet
+
+priority 200
+snippet hbar "\hbar" iAm
+\hbar
 endsnippet
 
 # == Superscript Operation ==
 
-snippet pri "prime" iAm
-^{\prime}
+snippet dag "dagger" iAm 
+^{\dagger}$0
 endsnippet
 
-snippet dag "dagger" iAm
-$1^{\dagger}$0
+snippet pri "prime" iAm
+^{\prime}$0
+endsnippet
+
+snippet '' "prime" iAm
+^{\prime \prime}$0
 endsnippet
 
 snippet invs "inverse" iAm
@@ -197,7 +192,7 @@ R_0^+
 endsnippet
 
 snippet po "power" iAm
-^{${1}}$0
+^{${1:2}}$0
 endsnippet
 
 priority 100
@@ -212,7 +207,7 @@ endsnippet
 # == Subscript Operation ==
 
 snippet sb "subscript" iAm
-_{${1:0}}$0
+_{${1:2}}$0
 endsnippet
 
 snippet `(})(\d)\2` "auto subscript" iAm
@@ -242,11 +237,11 @@ snippet `\b(?<!\\)([A-Za-z}])S([a-z])\2` "auto subscript 2" iAm
 endsnippet
 
 # Custom: Add more greek letters
-snippet `(\\mu|\\alpha|\\sigma|\\rho|\\beta|\\gamma|\\delta|\\zeta|\\eta|\\varepsilon|\\theta|\\iota|\\kappa|\\vartheta|\\lambda|\\nu|\\pi|\\rho|\\tau|\\upsilon|\\phi|\\chi|\\psi|\\omega|\\Gamma|\\Delta|\\Theta|\\Lambda|\\Xi|\\xi|\\Pi|\\Sigma|\\Upsilon|\\Phi|\\Psi|\\Omega|\\wp)([a-z])\2` "auto subscript for greek letter" iAm
+snippet `(\\mu|\\alpha|\\sigma|\\rho|\\beta|\\gamma|\\delta|\\zeta|\\eta|\\varepsilon|\\theta|\\iota|\\kappa|\\vartheta|\\lambda|\\nu|\\pi|\\rho|\\tau|\\upsilon|\\phi|\\chi|\\xi|\\psi|\\omega|\\Gamma|\\Delta|\\Theta|\\Lambda|\\Xi|\\Pi|\\Sigma|\\Upsilon|\\Phi|\\Psi|\\Omega|\\wp)([a-z])\2` "auto subscript for greek letter" iAm
 `` rv = m[1] + "_" + m[2].substring(0, 1) ``
 endsnippet
 
-snippet `(\\mu|\\alpha|\\sigma|\\rho|\\beta|\\gamma|\\delta|\\zeta|\\eta|\\varepsilon|\\theta|\\iota|\\kappa|\\vartheta|\\lambda|\\nu|\\pi|\\rho|\\tau|\\upsilon|\\phi|\\chi|\\psi|\\omega|\\Gamma|\\Delta|\\Theta|\\Lambda|\\Xi|\\xi|\\Pi|\\Sigma|\\Upsilon|\\Phi|\\Psi|\\Omega|\\wp)S([a-z])\2` "auto subscript for greek letter" iAm
+snippet `(\\mu|\\alpha|\\sigma|\\rho|\\beta|\\gamma|\\delta|\\zeta|\\eta|\\varepsilon|\\theta|\\iota|\\kappa|\\vartheta|\\lambda|\\nu|\\pi|\\rho|\\tau|\\upsilon|\\phi|\\chi|\\xi|\\psi|\\omega|\\Gamma|\\Delta|\\Theta|\\Lambda|\\Xi|\\Pi|\\Sigma|\\Upsilon|\\Phi|\\Psi|\\Omega|\\wp)S([a-z])\2` "auto subscript for greek letter" iAm
 `` rv = m[1] + "_{${1:" + m[2].substring(0, 1) + "}}$2"``
 endsnippet
 
@@ -287,11 +282,12 @@ snippet mbf "mathbf" iAm
 \mathbf{$1}$0
 endsnippet
 
-snippet rm "mathrm" iAm
+priority 100
+snippet mrm "mathrm" iAm
 \mathrm{$1}$0
 endsnippet
 
-snippet 1bb "\mathbbm{1}" iAm #\usepackage{bbm}
+snippet 1bb "\mathbbm{1}" iAm 
 \mathbbm{1}
 endsnippet
 
@@ -326,43 +322,33 @@ endsnippet
 # ==== Dynamic Operation ====
 
 priority 100
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(mbf|BF)` "mathbf" iAm
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(bf|BF)` "mathbf" iAm
 \mathbf{``rv = m[1]``}
 endsnippet
 
 priority 100
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(bm|BM)` "mathbb" iAm
-\mathbb{``rv = m[1]``}
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(bm|BM)` "mathbb" iAm
+\bm{``rv = m[1]``}
 endsnippet
 
 priority 100
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(bs)` "boldsymbol" iAm
-\boldsymbol{``rv = m[1]``}
-endsnippet
-
-priority 100
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(sf)` "mathsf" iAm
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(sf)` "mathsf" iAm
 \mathsf{``rv = m[1]``}
 endsnippet
 
 priority 100
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)(frak)` "mathfrak" iAm
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)(frak)` "mathfrak" iAm
 \mathfrak{``rv = m[1]``}
 endsnippet
 
 priority 100
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)cal` "mathcal" iAm
+snippet `(\d|\\?[a-zA-Z]\w*({?\w*})?(\(.\))?)cal` "mathcal" iAm
 \mathcal{``rv = m[1].toUpperCase()``}$0
 endsnippet
 
 priority 100
 snippet `(?<!\\)\b([a-zA-Z]+)rm` "mathrm" iAm
 \mathrm{``rv = m[1]``}
-endsnippet
-
-priority 100
-snippet `(?<!\\)\b([a-zA-Z]+)opn` "operatorname" iAm
-\operatorname{``rv = m[1]``}
 endsnippet
 
 # == Auto Symbol ==
@@ -754,72 +740,69 @@ snippet ket "ket" iAm
 endsnippet
 
 priority 101
-snippet tket "ket" iAm
-|${1:\psi}(t) \rangle $0
-endsnippet
-
-priority 101
-snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(ket)` "ket" iAm
+snippet `(\d+|\\?[a-zA-Z]\w*({?\w*})?(\^({?\w*})?)?(\(.\))?)(ket)` "ket" iAm
 |``rv = m[1]`` \rangle 
 endsnippet
 
-priority 100
-snippet kb "ket bra" iAm
-|${1:n} \rangle ${2} \langle ${1:n}|$0
+priority 101
+snippet `(\d+|\\?[a-zA-Z]\w*({?\w*})?(\^({?\w*})?)?(\(.\))?)(bra)` "bra" iAm
+\langle ``rv = m[1]``|  
 endsnippet
 
 priority 101
-snippet tkb "ket bra" iAm
-|${1:\psi}(t) \rangle ${2} \langle ${1:\psi}(t)|$0
+snippet `(\d+|\\?[a-zA-Z]\w*({?\w*})?(\^({?\w*})?)?(\(.\))?)(kb)` "ket bra" iAm
+|``rv = m[1]`` \rangle ${2}\langle ``rv = m[1]``|$0
 endsnippet
 
 priority 101
-snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(kb)` "ket bra" iAm
-|``rv = m[1]`` \rangle ${2} \langle``rv = m[1]`` |$0
+snippet `(\d+|\\?[a-zA-Z]\w*({?\w*})?(\^({?\w*})?)?(\(.\))?)(klb)` "ket bra" iAm
+|``rv = m[1]`` \rangle ${2}\langle ``rv = m[1]``|$0
 endsnippet
 
-priority 101
-snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(klb)` "ket bra" iAm
-|``rv = m[1]`` \rangle ${2} \langle``rv = m[1]`` |$0
-endsnippet
-
-priority 100
 snippet mean "mean" iAm
 \langle $1 \rangle $0
 endsnippet
 
-priority 100
 snippet Mean "mean" iAm
 \left\langle $1 \right\rangle $0
 endsnippet
 
-priority 100
-snippet com "community relation" iAm
+snippet com "commutation relation" iAm
 [\hat{${1:A}}, \hat{${2:B}}]$0
 endsnippet
 
+priority 101
+snippet acom "anticommutation relation" iAm
+\{\hat{${1:A}}, \hat{${2:B}}\\\}$0
+endsnippet
+
 priority 100
-snippet acom "anticommunity relation" iAm
-\{\hat{${1:A}}, \hat{${2:B}}\}$0
+snippet `([a-zA-Z])([a-zA-Z])(com)` "commutation relation" iAm
+[\hat{``rv = m[1]``}, \hat{``rv = m[2]``}]
+endsnippet
+
+priority 100
+snippet `([a-zA-Z])([a-zA-Z])(acom)` "anticommutation relation" iAm
+\{\hat{``rv = m[1]``}, \hat{``rv = m[2]``}\\\}
 endsnippet
 
 priority 101
-snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(mean)` "mean" iAm
+snippet `(\d+|\\?[a-zA-Z]\w*({?\w*})?(\^({?\w*})?)?(\(.\))?)(mean)` "mean" iAm
 \langle ``rv = m[1]`` \rangle
 endsnippet
 
 priority 101
-snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(mean)` "Mean" iAm
+snippet `(\d+|\\?[a-zA-Z]\w*({?\w*})?(\^({?\w*})?)?(\(.\))?)(mean)` "Mean" iAm
 \left\langle ``rv = m[1]`` \right\rangle
 endsnippet
 
 priority 101
-snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(blk)` "bra ket" iAm
+snippet `(\d+|\\?[a-zA-Z]\w*({?\w*})?(\^({?\w*})?)?(\(.\))?)(blk)` "bra ket" iAm
 \langle ``rv = m[1]``|``rv = m[1]`` \rangle
 endsnippet
 
 priority 102
-snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(bllk)` "mean" iAm
+snippet `(\d+|\\?[a-zA-Z]\w*({?\w*})?(\^({?\w*})?)?(\(.\))?)(bllk)` "mean" iAm
 \langle ``rv = m[1]``|$1|``rv = m[1]`` \rangle $0
 endsnippet
 
@@ -832,8 +815,6 @@ priority 200
 snippet norm iAm
 \left\| ${1} \right\|_{$2}$3
 endsnippet
-
-
 
 # == Snippet ==
 
@@ -863,7 +844,7 @@ snippet rij "mrij" iAm
 (${1:x}_${2:n})_{${3:$2} \\in ${4:N}}$0
 endsnippet
 
-priority 200
+priority 100
 snippet abs "absolute value" iAm
 |$1|$0
 endsnippet
@@ -874,7 +855,7 @@ snippet Abs "absolute value" iAm
 endsnippet
 
 priority 101
-snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)(abs)` "absolute value" iAm
+snippet `(\d+|\\?[a-zA-Z]\w*({?\w*})?(\^({?\w*})?)?(\(.\))?)(abs)` "absolute value" iAm
 |``rv = m[1]``|
 endsnippet
 
@@ -914,6 +895,10 @@ snippet `(?<!\\)prod` "product" iAm
 \prod_{${1:n=${2:1}}}^{${3:\infty}} ${4:${VISUAL}}$0
 endsnippet
 
+snippet dt iAm
+\mathrm{d}t
+endsnippet
+
 snippet `(?<!\\)part` "d/dx" iAm
 \frac{\partial ${1:V}}{\partial ${2:x}}$0
 endsnippet
@@ -938,17 +923,17 @@ endsnippet
 
 priority 100
 snippet dint "integral" iAm
-\int_{${1:-\infty}}^{${2:\infty}} \mathrm{d}${4:x}$0
+\int_{${1:-\infty}}^{${2:\infty}} \mathrm{d}$0
 endsnippet
 
 priority 100
 snippet ft "Fourier transform" iAm
-\int_{${1:-\infty}}^{${2:\infty}} \mathrm{d}${3:t} \mathrm{e}^{i \omega t} $0
+\int_{${1:-\infty}}^{${2:\infty}} \mathrm{d}${3:t} \mathrm{e}^{i \omega ${4:t}}$0
 endsnippet
 
 priority 200
 snippet ift "inverse Fourier transform" iAm
-\int_{${1:-\infty}}^{${2:\infty}} \frac{\mathrm{d}${3:\omega}}{2 \pi} \mathrm{e}^{-i \omega t} $0
+\int_{${1:-\infty}}^{${2:\infty}} \frac{\mathrm{d}${3:\omega}}{2 \pi} \mathrm{e}^{-i \omega ${4:t}}$0
 endsnippet
 
 priority 200
@@ -973,10 +958,22 @@ rv = final;
 ``
 endsnippet
 
+# Superoperator 
+
+priority 200
+snippet Grho "mathcal G" iAm
+\mathcal{G}[${1:\hat{r}}] \rho = \frac{${1:\hat{r}} \rho ${1:\hat{r}}^{\dagger}}{\mathrm{Tr}[${1:\hat{r}} \rho ${1:\hat{r}}^{\dagger}]} - \rho $0
+endsnippet
+
+priority 200
+snippet Hrho "mathcal H" iAm
+\mathcal{H}[${1:\hat{r}}] \rho &= ${1:\hat{r}} \rho + \rho ${1:\hat{r}}^{\dagger} - \mathrm{Tr}[${1:\hat{r}} \rho + \rho ${1:\hat{r}}^{\dagger}] \rho.
+endsnippet
+
 # Custom: Can add more defined operator
 priority 100
-snippet `(?<![\a-zA-Z])(rank|lcm|gcd|atan2|softmax|tr|Re|trace|diag|sign|const)` "math function" iAm
-\\operatorname{``rv = m[1]``}
+snippet `(?<![\a-zA-Z])(rank|lcm|gcd|atan2|softmax|tr|trace|diag|sign|const)` "math function" iAm
+\\mathrm{``rv = m[1]``}
 endsnippet
 
 # ====== Big Snippet ======
@@ -1119,6 +1116,12 @@ snippet `vecr([1-9])` "row vector" iiAm
 ``\\end{pmatrix}$0
 endsnippet
 
+priority 300
+snippet `ali([1-9])` "align" iiAm
+\\begin{align}``
+    rv = gen_matrix(m[1], 1);
+``\\end{align}$0
+endsnippet
 
 # == General ==
 
@@ -1202,7 +1205,17 @@ snippet orth "complex orthonormal set" iAm
 \int_{${1:V}} \bm{u}_{k}^{*}(\bm{r}) \bm{u}_{k^{\prime}}(\bm{r}) \mathrm{d}\bm{r} = \delta_{k k^{\prime}}
 endsnippet
 
-snippet `(\\?[a-zA-Z]\w*({?\w*})?)co([a-zA-Z])` "bar" iAm
+snippet `(\\?[a-zA-Z]\w*({?\w*})?)co([a-zA-Z])` "Complete orthogonality" iAm
 \int_{${1:V}} ``rv = m[1]``_{``rv = m[3]``}^{*}(\bm{r}) ``rv = m[1]``_{``rv = m[3]``^{\prime}}(\bm{r}) \mathrm{d}\bm{r} = \delta_{``rv = m[3]`` ``rv = m[3]``^{\prime}}$0
 endsnippet
 
+== Physical operator ==
+
+priority 100
+snippet `([a-zA-Z])ono` "occupation number operator" iAm
+\hat{``rv = m[1]``}^{\dagger}\hat{``rv = m[1]``}$0
+endsnippet
+
+snippet `([a-zA-Z])\w*{?(\w*)}?ono` "occupation number operator" iAm
+\hat{``rv = m[1]``}^{\dagger}_{``rv = m[2]``}\hat{``rv = m[1]``}_{``rv = m[2]``}$0
+endsnippet
