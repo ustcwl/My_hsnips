@@ -200,7 +200,12 @@ snippet epo "e power" iAm
 endsnippet
 
 snippet sr "square" iAm
-^{2}$0
+^{2}
+endsnippet
+
+priority 100
+snippet `(})sr` "square" iAm
+ 2\}
 endsnippet
 
 # == Subscript Operation ==
